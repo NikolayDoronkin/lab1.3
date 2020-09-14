@@ -33,6 +33,7 @@ public class Main {
                     break;
                 case 3://поиск по номеру телефона фамилии
                     int temp = Integer.parseInt(inputnum());
+                    if(checkNum(temp, info)) temp = Integer.parseInt(inputnum());
                     boolean b = false;
                     for(int i = 0; i < info.size(); i++){
                         if(temp == info.get(i).getNum()){
@@ -152,15 +153,21 @@ public class Main {
             Scanner scan = new Scanner(System.in);
             String str = scan.nextLine();
             boolean b = true;
-            if (str.matches("\\s*[0-9]{7}\\s*")) {
-                for(int i = 0; i < info.size(); i++){
-                    if(str.replaceAll("\\s+|, \\s*", "").equals(Integer.toString(info.get(i).getNum())))
-                        b = false;
-                }
-            }
-            if(b) return str.replaceAll("\\s+|, \\s*", "");
+            if (str.matches("\\s*[0-9]{7}\\s*"))
+                return str.replaceAll("\\s+|, \\s*", "");
             else System.err.println("Повторите попытку: ");
         }
+    }
+
+    private static boolean checkNum(int number, MyArrayList<Station> list){
+        boolean b = true;
+        for(int i = 0; i < list.size(); i++){
+            if(number == list.get(i).getNum()) {
+                b = false;
+                break;
+            }
+        }
+        return b;
     }
 
     private static Station create() {
