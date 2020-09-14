@@ -32,7 +32,7 @@ public class Main {
                     else checker = false;
                     break;
                 case 3://поиск по номеру телефона фамилии
-                    int temp = Integer.parseInt(inputnum());
+                    int temp = 0;
                     if(checkNum(temp, info)) temp = Integer.parseInt(inputnum());
                     boolean b = false;
                     for(int i = 0; i < info.size(); i++){
@@ -56,11 +56,12 @@ public class Main {
                             if(namex.toLowerCase().equals(info.get(i).getName().toLowerCase())){
                                 if(patronymicx.toLowerCase().equals((info.get(i).getPatronymic().toLowerCase()))){
                                     System.out.println(info.get(i).toString());
+                                    a = true;
                                 } else a = false;
                             } else a = false;
                         } else a = false;
                     }
-                    if(a) System.err.println("Совпадений не найдено!");
+                    if(!a) System.err.println("Совпадений не найдено!");
                     s = 0;
                     if (s == selection()) menu();
                     else checker = false;
@@ -142,7 +143,11 @@ public class Main {
         while (true) {
             Scanner scan = new Scanner(System.in);
             String str = scan.nextLine();
-            if (str.matches("[\\s*[a-zA-Zа-яА-Я]\\s+]+")) return str.replaceAll("\\s+|, \\s*", "");
+            String regex = "\\s";
+            if(!str.matches("\\s*")){
+                if (str.matches("[\\s*[a-zA-Zа-яА-Я]\\s+]+")) return str.replaceAll("\\s+|, \\s*", "");
+                else System.err.println("Повторите попытку: ");
+            }
             else System.err.println("Повторите попытку: ");
         }
     }
