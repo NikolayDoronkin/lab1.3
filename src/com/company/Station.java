@@ -6,7 +6,7 @@ public class Station {
     private String patronymic;
     private int num;
 
-    public Station(String surname, String name, String patronymic, int num){
+    public Station(String surname, String name, String patronymic, int num) {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
@@ -29,7 +29,7 @@ public class Station {
         this.num = num;
     }
 
-    public void setAll(Station s){
+    public void copy(Station s) {
         this.name = s.getName();
         this.surname = s.getSurname();
         this.patronymic = s.getPatronymic();
@@ -53,7 +53,7 @@ public class Station {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("%-30s|%-30s|%-30s|%-10d|%n", this.surname, this.name, this.patronymic, this.num);
     }
 }

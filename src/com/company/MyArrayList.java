@@ -21,22 +21,21 @@ public class MyArrayList<E> {
         Node<E> temp = new Node<E>(element);
         if (size == 0) {
             head.next = temp;
-        }
-        else last.next = temp;
+        } else last.next = temp;
         last = temp;
         temp.next = head;
         size++;
     }
 
-    public void removeAt(int index){
+    public void removeAt(int index) {
         Node<E> temp;
         Node<E> prev;
         if (index < 0 || index > size - 1)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        if(index == 0){
+        if (index == 0) {
             temp = node(index);
             head.next = temp.next;
-        } else{
+        } else {
             temp = node(index);
             prev = node(index - 1);
             prev.next = temp.next;
@@ -45,7 +44,7 @@ public class MyArrayList<E> {
         size--;
     }
 
-    public void set(int index, E element){
+    public void set(int index, E element) {
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         Node<E> temp = node(index);
@@ -63,7 +62,7 @@ public class MyArrayList<E> {
         return e;
     }
 
-    public E get(int index){
+    public E get(int index) {
         return node(index).element;
     }
 
@@ -84,7 +83,7 @@ public class MyArrayList<E> {
         return size;
     }
 
-    public void clear(){
+    public void clear() {
         head.next = head;
         size = 0;
     }
