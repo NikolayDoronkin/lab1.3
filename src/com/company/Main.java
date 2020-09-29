@@ -17,26 +17,22 @@ public class Main {
         info.add(new Station("доронкИН", "ИГОрь", "николаевИЧ", 8209912));
         info.add(new Station("ДОРОнкин", "Николай", "Степанович", 8209912));
         info.add(new Station("дОрОнкиН", "никОЛАЙ", "ИГОРЕВич", 8020165));
-        menu(myMenu);
         while (checker) {
+            showMenu(myMenu);
             switch (choose()) {
                 case 1://добавить в
                     info.add(create());
                     System.out.println("СОХРАНЕНО");
-                    menu(myMenu);
                     break;
                 case 2://вывести список
                     sort(info);
                     show(info);
-                    menu(myMenu);
                     break;
                 case 3://поиск по номеру телефона фамилии
                     searchByNumber();
-                    menu(myMenu);
                     break;
                 case 4://поиск по фамилии номера телефона
                     searchByName();
-                    menu(myMenu);
                     break;
                 case 5://закончить прогу
                     checker = false;
@@ -64,7 +60,7 @@ public class Main {
         switch (str) {
             case "Numbers":
                 int temp = 0;
-                if (checkNum(temp, info)) temp = Integer.parseInt(inputnum());
+                if (checkNum(temp, info)) temp = Integer.parseInt(inputNum());
                 b = false;
                 for (int i = 0; i < info.size(); i++) {
                     if (temp == info.get(i).getNum()) {
@@ -74,9 +70,9 @@ public class Main {
                 }
                 break;
             case "Names":
-                String namex = inputstr("Имя");
-                String surnamex = inputstr("Фамилию");
-                String patronymicx = inputstr("Отчество");
+                String namex = inputStr("Имя");
+                String surnamex = inputStr("Фамилию");
+                String patronymicx = inputStr("Отчество");
                 b = true;
                 for (int i = 0; i < info.size(); i++) {
                     if (surnamex.toLowerCase().equals(info.get(i).getSurname().toLowerCase())) {
@@ -115,7 +111,7 @@ public class Main {
         }
     }
 
-    private static void swap(Station first, Station second) {
+    public static void swap(Station first, Station second) {
         Station temp = new Station("", "", "", 0);
         temp.copy(first);
         first.copy(second);
@@ -137,7 +133,7 @@ public class Main {
         return b;
     }
 
-    private static void menu(MyArrayList<String> menu) {
+    private static void showMenu(MyArrayList<String> menu) {
         for (int pos = 0; pos < menu.size(); pos++) {
             System.out.println(pos + 1 + " - " + menu.get(pos));
         }
@@ -152,7 +148,7 @@ public class Main {
         }
     }
 
-    private static String inputstr(String s) {
+    private static String inputStr(String s) {
         System.out.println("Введите " + s + ":");
         while (true) {
             Scanner scan = new Scanner(System.in);
@@ -165,7 +161,7 @@ public class Main {
         }
     }
 
-    private static String inputnum() {
+    private static String inputNum() {
         System.out.println("Введите номер телефона");
         while (true) {
             Scanner scan = new Scanner(System.in);
@@ -189,7 +185,7 @@ public class Main {
     }
 
     private static Station create() {
-        return new Station(inputstr("Фамилию"), inputstr("Имя"), inputstr("Отчество"), Integer.parseInt(inputnum()));
+        return new Station(inputStr("Фамилию"), inputStr("Имя"), inputStr("Отчество"), Integer.parseInt(inputNum()));
     }
 
     private static void show(MyArrayList<Station> s) {
